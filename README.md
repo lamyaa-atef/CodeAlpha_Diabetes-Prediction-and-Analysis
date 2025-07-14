@@ -57,8 +57,7 @@ plt.savefig("images/countplot_outcome.png")
 plt.show()
 ```
 
-📷 
-![Count Plot](images/countplot_outcome.png)
+📷 ![Count Plot](images/countplot_outcome.png)
 
 ---
 
@@ -72,8 +71,7 @@ plt.savefig("images/correlation_heatmap.png")
 plt.show()
 ```
 
-📷
-![Heatmap](images/correlation_heatmap.png)
+📷 ![Heatmap](images/correlation_heatmap.png)
 
 ---
 
@@ -87,29 +85,14 @@ for col in df.columns[:-1]:
     plt.show()
 ```
 
-📷
-![Histogram](images/histplot_Pregnancies.png)
-
-📷
-![Histogram](images/histplot_glucose.png)
-
-📷
-![Histogram](images/histplot_BloodPressure.png)
-
-📷
-![Histogram](images/histplot_SkinThickness.png)
-
-📷
-![Histogram](images/histplot_Insulin.png)
-
-📷
-![Histogram](images/histplot_BMI.png)
-
-📷
-![Histogram](images/histplot_DiabetesPedigreeFunction.png)
-
-📷
-![Histogram](images/histplot_Age.png)
+📷 ![Histogram](images/histplot_Pregnancies.png)
+📷 ![Histogram](images/histplot_glucose.png)
+📷 ![Histogram](images/histplot_BloodPressure.png)
+📷 ![Histogram](images/histplot_SkinThickness.png)
+📷 ![Histogram](images/histplot_Insulin.png)
+📷 ![Histogram](images/histplot_BMI.png)
+📷 ![Histogram](images/histplot_DiabetesPedigreeFunction.png)
+📷 ![Histogram](images/histplot_Age.png)
 
 ---
 
