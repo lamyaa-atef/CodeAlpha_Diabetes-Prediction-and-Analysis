@@ -88,11 +88,17 @@ for col in df.columns[:-1]:
 📷 ![Histogram](images/histplot_Pregnancies.png)
 
 📷 ![Histogram](images/histplot_glucose.png)
+
 📷 ![Histogram](images/histplot_BloodPressure.png)
+
 📷 ![Histogram](images/histplot_SkinThickness.png)
+
 📷 ![Histogram](images/histplot_Insulin.png)
+
 📷 ![Histogram](images/histplot_BMI.png)
+
 📷 ![Histogram](images/histplot_DiabetesPedigreeFunction.png)
+
 📷 ![Histogram](images/histplot_Age.png)
 
 ---
@@ -128,8 +134,7 @@ accuracy = accuracy_score(y_test, y_pred)
 print(f"Accuracy: {accuracy * 100:.2f}%")
 ```
 
-📷
-![Model Accuracy](images/logistic_accuracy.png)
+📷 ![Model Accuracy](images/logistic_accuracy.png)
 
 ---
 
