@@ -86,6 +86,7 @@ for col in df.columns[:-1]:
 ```
 
 📷 ![Histogram](images/histplot_Pregnancies.png)
+
 📷 ![Histogram](images/histplot_glucose.png)
 📷 ![Histogram](images/histplot_BloodPressure.png)
 📷 ![Histogram](images/histplot_SkinThickness.png)
