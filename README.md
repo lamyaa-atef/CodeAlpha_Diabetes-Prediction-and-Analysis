@@ -140,8 +140,62 @@ print(f"Accuracy: {accuracy * 100:.2f}%")
 
 ## ✅ Results
 
-- Model Accuracy: `XX.XX%` (your output)
+- Model Accuracy: `74.68%`
 - Data is imbalanced (more 0s than 1s), so additional evaluation like **confusion matrix**, **precision**, and **recall** is recommended.
+
+---
+
+## 📈 Insightful Conclusions
+
+### 💡 1. Who Is More Vulnerable?
+
+Based on the dataset and visual trends:
+
+- Individuals with **high glucose levels** and **high BMI** tend to have a higher likelihood of diabetes (`Outcome = 1`).
+- **Pregnancy count** is also associated with increased diabetes risk.
+- Older individuals and those with **higher blood pressure or insulin levels** may also be more vulnerable.
+
+Most influential features:
+- `Glucose` (strongest correlation with Outcome)
+- `BMI`
+- `Age`
+- `Insulin` (when non-zero)
+
+---
+
+### ❗ 2. Where Do the Outliers Come From?
+
+Outliers are visible in several features:
+- **Insulin**, **SkinThickness**, and **BloodPressure** have many zero values — these are likely **missing values** coded as zero.
+- These anomalies may affect model accuracy and should be cleaned or imputed in preprocessing.
+
+---
+
+### 🔗 3. Are There Relationships Between the Factors?
+
+Yes. The correlation heatmap reveals:
+
+- `Glucose` and `Outcome`: Strong positive correlation.
+- `BMI` and `Outcome`: Moderate correlation.
+- `Age` and `Outcome`: Moderate correlation.
+- Some features like `SkinThickness` and `BloodPressure` show weaker relationships — possibly due to outliers.
+
+```
+Example Correlation Values:
+- Glucose vs Outcome ≈ 0.47
+- BMI vs Outcome     ≈ 0.31
+- Age vs Outcome     ≈ 0.24
+```
+
+---
+
+### ✅ Summary
+
+| Insight              | Observation                                         |
+|----------------------|-----------------------------------------------------|
+| **Vulnerable Groups**| High Glucose, High BMI, Older Age                  |
+| **Outliers**         | Zero values in Insulin, Blood Pressure, SkinThickness |
+| **Key Relationships**| Glucose → Outcome, BMI → Outcome, Age → Outcome    |
 
 ---
 
