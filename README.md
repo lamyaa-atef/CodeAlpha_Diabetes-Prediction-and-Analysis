@@ -1,81 +1,55 @@
-# 📊 Diabetes Data Analysis
+# Diabetes Prediction and Analysis
 
-This project analyzes the **Pima Indians Diabetes dataset** using Python and libraries like `Pandas`, `Seaborn`, and `Scikit-learn`.  
-The goal is to explore the data and build a **Logistic Regression** model to predict diabetes.
-
----
-
-## 📁 Dataset
-
-- **File:** `diabetes.csv`
-- **Target column:** `Outcome`  
-  - `0` = No diabetes  
-  - `1` = Has diabetes
+This project explores a diabetes dataset using data visualization, preprocessing, and logistic regression modeling. The goal is to predict diabetes outcomes based on medical attributes.
 
 ---
 
-## 🧰 Tools and Libraries
+## 📊 Dataset Overview
 
-```bash
-pip install pandas seaborn scikit-learn matplotlib
-```
+The dataset contains the following columns:
+
+- Pregnancies
+- Glucose
+- BloodPressure
+- SkinThickness
+- Insulin
+- BMI
+- DiabetesPedigreeFunction
+- Age
+- Outcome (Target: 1 for diabetic, 0 for non-diabetic)
 
 ---
 
-## 📌 Step-by-Step Process
+## 🔍 Exploratory Data Analysis (EDA)
 
-### 1. 📥 Load and Understand the Data
+### a. Count of Outcome Classes
 
 ```python
-import pandas as pd
-
-df = pd.read_csv("diabetes.csv")
-print("🔹 Head:")
-print(df.head())
-print("🔹 Info:")
-print(df.info())
-print("🔹 Description:")
-print(df.describe())
-```
-
-📷 **Preview:**  
-![Data Preview](images/head_info_describe.png)
-
----
-
-### 2. 📊 Visualize the Data
-
-#### a. Count of Diabetes Cases
-
-```python
-import seaborn as sns
-import matplotlib.pyplot as plt
-
 sns.countplot(x='Outcome', data=df)
-plt.title("Diabetes Outcome Count")
+plt.title("Count of Diabetes Outcome")
 plt.savefig("images/countplot_outcome.png")
 plt.show()
 ```
 
-📷 ![Count Plot](images/countplot_outcome.png)
+📷 ![Countplot](images/countplot_outcome.png)
 
 ---
 
-#### b. Correlation Heatmap
+### b. Correlation Heatmap
 
 ```python
-plt.figure(figsize=(10, 8))
+plt.figure(figsize=(10,8))
 sns.heatmap(df.corr(), annot=True, cmap='coolwarm')
-plt.title("Correlation Heatmap")
-plt.savefig("images/correlation_heatmap.png")
+plt.title("Feature Correlation Heatmap")
+plt.savefig("images/heatmap_correlation.png")
 plt.show()
 ```
 
-📷 ![Heatmap](images/correlation_heatmap.png)
+📷 ![Heatmap](images/heatmap_correlation.png)
 
 ---
 
-#### c. Feature Distributions (Loop)
+### c. Glucose & Other Feature Distributions
 
 ```python
 for col in df.columns[:-1]:
@@ -85,139 +59,86 @@ for col in df.columns[:-1]:
     plt.show()
 ```
 
-📷 ![Histogram](images/histplot_Pregnancies.png)
-
-📷 ![Histogram](images/histplot_glucose.png)
-
-📷 ![Histogram](images/histplot_BloodPressure.png)
-
-📷 ![Histogram](images/histplot_SkinThickness.png)
-
-📷 ![Histogram](images/histplot_Insulin.png)
-
-📷 ![Histogram](images/histplot_BMI.png)
-
-📷 ![Histogram](images/histplot_DiabetesPedigreeFunction.png)
-
-📷 ![Histogram](images/histplot_Age.png)
+📷 ![Histogram Glucose](images/histplot_Glucose.png)
 
 ---
 
-### 3. 🤖 Train a Logistic Regression Model
+## 🧹 Data Preprocessing
 
-#### a. Prepare the Data
+- **Replaced 0s** with `NaN` for features where zero is not physiologically valid: `Glucose`, `BloodPressure`, `SkinThickness`, `Insulin`, `BMI`.
+- **Imputed** missing values with median of each feature.
+- **Split** dataset into training and testing sets.
 
-```python
-from sklearn.model_selection import train_test_split
+---
 
-X = df.drop('Outcome', axis=1)
-y = df['Outcome']
+## 🤖 Model Training
 
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
-)
+Used **Logistic Regression** from `sklearn.linear_model`.  
+Split data: 75% training, 25% testing.
+
+**Before cleaning:** Accuracy = **74.68%**  
+**After cleaning:** Accuracy = **75.32%** ✅
+
+### Classification Report:
+
+```
+              precision    recall  f1-score   support
+
+           0       0.80      0.83      0.81        99
+           1       0.67      0.62      0.64        55
+
+    accuracy                           0.75       154
+   macro avg       0.73      0.72      0.73       154
+weighted avg       0.75      0.75      0.75       154
+```
+
+### Confusion Matrix:
+
+```
+[[82 17]
+ [21 34]]
 ```
 
 ---
 
-#### b. Train and Evaluate
+## 📌 Insight Conclusions
 
-```python
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
+### 🧠 Who is more vulnerable?
+- People with **higher glucose levels**, **BMI**, and **age** are more likely to have diabetes.
+- Females with **multiple pregnancies** are also at higher risk.
+- The model reveals that **Glucose** is the most influential factor, followed by **BMI** and **Age**.
 
-model = LogisticRegression(max_iter=1000)
-model.fit(X_train, y_train)
-y_pred = model.predict(X_test)
+### ⚠️ Where do the outliers come from?
+- Features like **Insulin**, **SkinThickness**, and **BloodPressure** have many **zero values**, which are likely **missing values** entered incorrectly.
+- These were replaced with `NaN` and imputed to improve the model.
 
-accuracy = accuracy_score(y_test, y_pred)
-print(f"Accuracy: {accuracy * 100:.2f}%")
-```
-
-📷 ![Model Accuracy](images/logistic_accuracy.png)
-
----
-
-## ✅ Results
-
-- Model Accuracy: `74.68%`
-- Data is imbalanced (more 0s than 1s), so additional evaluation like **confusion matrix**, **precision**, and **recall** is recommended.
-
----
-
-## 📈 Insightful Conclusions
-
-### 💡 1. Who Is More Vulnerable?
-
-Based on the dataset and visual trends:
-
-- Individuals with **high glucose levels** and **high BMI** tend to have a higher likelihood of diabetes (`Outcome = 1`).
-- **Pregnancy count** is also associated with increased diabetes risk.
-- Older individuals and those with **higher blood pressure or insulin levels** may also be more vulnerable.
-
-Most influential features:
-- `Glucose` (strongest correlation with Outcome)
-- `BMI`
-- `Age`
-- `Insulin` (when non-zero)
-
----
-
-### ❗ 2. Where Do the Outliers Come From?
-
-Outliers are visible in several features:
-- **Insulin**, **SkinThickness**, and **BloodPressure** have many zero values — these are likely **missing values** coded as zero.
-- These anomalies may affect model accuracy and should be cleaned or imputed in preprocessing.
-
----
-
-### 🔗 3. Are There Relationships Between the Factors?
-
-Yes. The correlation heatmap reveals:
-
-- `Glucose` and `Outcome`: Strong positive correlation.
-- `BMI` and `Outcome`: Moderate correlation.
-- `Age` and `Outcome`: Moderate correlation.
-- Some features like `SkinThickness` and `BloodPressure` show weaker relationships — possibly due to outliers.
-
-```
-Example Correlation Values:
-- Glucose vs Outcome ≈ 0.47
-- BMI vs Outcome     ≈ 0.31
-- Age vs Outcome     ≈ 0.24
-```
-
----
-
-### ✅ Summary
-
-| Insight              | Observation                                         |
-|----------------------|-----------------------------------------------------|
-| **Vulnerable Groups**| High Glucose, High BMI, Older Age                  |
-| **Outliers**         | Zero values in Insulin, Blood Pressure, SkinThickness |
-| **Key Relationships**| Glucose → Outcome, BMI → Outcome, Age → Outcome    |
+### 🔗 Are there relationships between the factors?
+- Strong positive correlation between **Glucose** and **Outcome**.
+- Moderate relationship between **BMI** and **Outcome**.
+- Weak or no correlation between **SkinThickness** and **Outcome**, suggesting it may not be a strong predictor.
 
 ---
 
 ## 📁 Folder Structure
 
 ```
-Diabetes-Prediction-and-Analysis/
+project-folder/
+│
+├── images/
+│   ├── countplot_outcome.png
+│   ├── heatmap_correlation.png
+│   ├── histplot_Glucose.png
+│   └── ...other feature plots
 │
 ├── diabetes.csv
 ├── Diabetes Prediction and Analysis.ipynb
-├── README.md
-└── images/
-    ├── head_info_describe.png
-    ├── countplot_outcome.png
-    ├── correlation_heatmap.png 
-    ├── histplot_Pregnancies.png
-    ├── histplot_glucose.png
-    ├── histplot_BloodPressure.png
-    ├── histplot_SkinThickness.png
-    ├── histplot_Insulin.png
-    ├── histplot_BMI.png
-    ├── histplot_DiabetesPedigreeFunction.png
-    ├── histplot_Age.png
-    └── logistic_accuracy.png
+└── README.md
 ```
+
+---
+
+## ✅ Next Steps
+
+- Try different classifiers (Random Forest, XGBoost).
+- Address class imbalance using SMOTE or resampling.
+- Tune hyperparameters for better performance.
