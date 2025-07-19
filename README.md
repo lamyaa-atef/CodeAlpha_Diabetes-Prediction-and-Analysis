@@ -126,9 +126,25 @@ project-folder/
 │
 ├── images/
 │   ├── countplot_outcome.png
-│   ├── heatmap_correlation.png
+│   ├── correlation_heatmap.png
+│   ├── histplot_Pregnancies.png
+│   ├── histplot_BloodPressure.png
+│   ├── histplot_BMI.png
+│   ├── histplot_DiabetesPedigreeFunction.png
+│   ├── histplot_Insulin.png
+│   ├── histplot_SkinThickness.png
 │   ├── histplot_Glucose.png
-│   └── ...other feature plots
+│   ├── histplot_Age.png
+│   ├── countplot_outcome_after_cleaning.png
+│   ├── correlation_heatmap_after_cleaning.png
+│   ├── histplot_Pregnancies_after_cleaning.png
+│   ├── histplot_BloodPressure_after_cleaning.png
+│   ├── histplot_BMI_after_cleaning.png
+│   ├── histplot_DiabetesPedigreeFunction_after_cleaning.png
+│   ├── histplot_Insulin_after_cleaning.png
+│   ├── histplot_SkinThickness_after_cleaning.png
+│   └── histplot_Glucos_after_cleaninge.png
+│   └── histplot_Age_after_cleaning.png
 │
 ├── diabetes.csv
 ├── Diabetes Prediction and Analysis.ipynb
