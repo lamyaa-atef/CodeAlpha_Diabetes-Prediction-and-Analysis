@@ -40,12 +40,12 @@ plt.show()
 ```python
 plt.figure(figsize=(10,8))
 sns.heatmap(df.corr(), annot=True, cmap='coolwarm')
-plt.title("Feature Correlation Heatmap")
-plt.savefig("images/heatmap_correlation.png")
+plt.title("Correlation Matrix")
+plt.savefig("images/correlation_heatmap.png")
 plt.show()
 ```
 
-📷 ![Heatmap](images/heatmap_correlation.png)
+📷 ![Heatmap](images/correlation_heatmap.png)
 
 ---
 
