@@ -143,7 +143,7 @@ project-folder/
 │   ├── histplot_DiabetesPedigreeFunction_after_cleaning.png
 │   ├── histplot_Insulin_after_cleaning.png
 │   ├── histplot_SkinThickness_after_cleaning.png
-│   ├── histplot_Glucos_after_cleaninge.png
+│   ├── histplot_Glucose_after_cleaninge.png
 │   └── histplot_Age_after_cleaning.png
 │
 ├── diabetes.csv
