@@ -122,7 +122,7 @@ weighted avg       0.75      0.75      0.75       154
 ## 📁 Folder Structure
 
 ```
-project-folder/
+Diabetes-Prediction-and-Analysis/
 │
 ├── images/
 │   ├── countplot_outcome.png
