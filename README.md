@@ -101,7 +101,7 @@ weighted avg       0.75      0.75      0.75       154
 
 ---
 
-## 📌 Insight Conclusions
+## 📌 Insights and Conclusions
 
 ### 🧠 Who is more vulnerable?
 - People with **higher glucose levels**, **BMI**, and **age** are more likely to have diabetes.
